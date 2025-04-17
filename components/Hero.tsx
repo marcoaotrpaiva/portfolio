@@ -27,7 +27,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="h-auto md:h-screen bg-[#101D25] relative overflow-hidden pt-20">
+    <section id="home" className="w-screen overflow-x-hidden h-auto md:h-screen bg-[#101D25] relative pt-20">
       {/* Navbar */}
       <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-[#101D25]/70">
         <div className="container mx-auto flex items-center justify-between px-6 sm:px-8 lg:px-20 py-4">
@@ -92,7 +92,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 sm:px-8 lg:px-20 pt-8 pb-8">
         {/* Mobile image above text */}
         <motion.div
-          className="block md:hidden w-50 h-50 relative mx-auto mb-6 rounded-full overflow-hidden"
+          className="block md:hidden w-40 h-40 relative mx-auto mb-6 rounded-full overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
