@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
 const Hero = () => {
   const [activeSection, setActiveSection] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
@@ -30,18 +32,27 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="w-full overflow-x-hidden min-h-screen bg-[#101D25] relative pt-20 px-4 sm:px-6 md:px-12"
+      className="w-full overflow-x-hidden min-h-screen bg-[#101D25] relative pt-24 px-4 sm:px-6 md:px-12"
     >
       {/* Navbar */}
       <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-[#101D25]/70">
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-20 py-3">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-20 py-4">
           <div
-            className="text-xl sm:text-2xl font-semibold tracking-widest"
+            className="text-2xl font-semibold tracking-widest"
             style={{ fontFamily: "'Montserrat', sans-serif", color: '#F2D0CA' }}
           >
             MP
           </div>
-          <div className="flex gap-1 sm:gap-2 text-xs sm:text-sm px-1 sm:px-0">
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Abrir menu">
+              {isMenuOpen ? <X size={24} color="#F2D0CA" /> : <Menu size={24} color="#F2D0CA" />}
+            </button>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex gap-2 text-xs sm:text-sm">
             {topButtons.map(({ label, href }) => {
               const sectionId = href.replace('#', '');
               const isContact = label === 'Contacto';
@@ -52,7 +63,7 @@ const Hero = () => {
                     whileHover={{ scale: 1.07 }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 240, damping: 20 }}
-                    className={`px-3 py-1 rounded-full border transition-all duration-300 backdrop-blur-sm ${
+                    className={`px-4 py-1 rounded-full border transition-all duration-300 backdrop-blur-sm ${
                       isActive ? 'border-white text-white' : 'text-[#F2D0CA] border-[#F2D0CA]'
                     } ${isContact ? 'font-semibold bg-gradient-to-r from-[#F2D0CA] to-[#F2C3BF] text-black' : 'font-normal'}`}
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -64,13 +75,29 @@ const Hero = () => {
             })}
           </div>
         </div>
+
+        {/* Mobile Dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden px-4 pb-4 flex flex-col gap-2">
+            {topButtons.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="text-[#F2D0CA] text-sm py-1 border-b border-[#F2D0CA]/30"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
       </header>
 
       {/* Main */}
-      <div className="flex flex-col items-center justify-center gap-6 pt-10 pb-16 md:pt-28 md:flex-row md:justify-between md:items-center">
+      <div className="flex flex-col items-center justify-center gap-6 pt-12 pb-20 md:pt-28 md:flex-row md:justify-between md:items-center">
         {/* Mobile Image */}
         <motion.div
-          className="block md:hidden w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden mb-4"
+          className="block md:hidden w-28 h-28 sm:w-36 sm:h-36 rounded-full overflow-hidden mt-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -78,8 +105,8 @@ const Hero = () => {
           <Image
             src="/images/profile-picture.png"
             alt="Retrato de Marco Paiva"
-            width={140}
-            height={140}
+            width={144}
+            height={144}
             className="object-cover"
             priority
           />
@@ -93,7 +120,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           <h1
-            className="text-[28px] sm:text-[36px] md:text-[72px] leading-snug font-thin mb-4"
+            className="text-[36px] sm:text-[42px] md:text-[72px] leading-snug font-thin mb-6"
             style={{ fontFamily: 'var(--font-montserrat)', color: '#878483' }}
           >
             <span className="inline-block">
@@ -104,17 +131,16 @@ const Hero = () => {
             </span>
             <br />
             <span className="inline-block">
-              Sou o{' '}
-              <span className="font-bold text-[#F2D0CA]">Marco&nbsp;Paiva</span>
+              Sou o <span className="font-bold text-[#F2D0CA]">Marco&nbsp;Paiva</span>
             </span>
           </h1>
           <p
-            className="text-xs sm:text-sm flex flex-wrap justify-center md:justify-start gap-2 mb-5"
+            className="text-sm sm:text-base flex flex-wrap justify-center md:justify-start gap-2 mb-6"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               color: '#878483',
               opacity: 0.6,
-              letterSpacing: '1.5px',
+              letterSpacing: '2px',
             }}
           >
             <span>Designer UI/UX</span>
@@ -126,7 +152,7 @@ const Hero = () => {
             href="#projects"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-block text-xs sm:text-sm px-4 sm:px-6 py-2 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wider opacity-80"
+            className="inline-block text-sm sm:text-base px-6 sm:px-8 py-2.5 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wider opacity-80"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               background: 'linear-gradient(to right, rgba(242, 208, 202, 0) 0%, rgba(242, 208, 202, 1) 50%, rgba(242, 208, 202, 0) 100%)',
