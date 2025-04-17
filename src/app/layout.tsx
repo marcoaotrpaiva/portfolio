@@ -1,10 +1,16 @@
 // src/app/layout.tsx
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-
+import type { Metadata } from 'next';
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
-
+export const metadata: Metadata = {
+  // título padrão
+  title: 'Marco Paiva · Portfolio',
+  description:
+    'Portfólio de Marco Paiva — Designer UI/UX e Full‑Stack Developer.',
+  icons: { icon: '/favicon.ico' },      // opcional
+};
 export default function RootLayout({
   children,
 }: {
