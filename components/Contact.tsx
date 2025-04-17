@@ -46,7 +46,7 @@ const Contact = () => {
     <>
       <section
         id="contact"
-        className="min-h-screen bg-[#101D25] text-white px-6 md:px-32 pt-20 pb-32 flex flex-col items-center justify-center"
+        className="min-h-screen bg-[#101D25] text-white px-6 md:px-32 pt-32 pb-52 flex flex-col items-center justify-center"
       >
         <Toaster
           position="bottom-center"

@@ -3,20 +3,19 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FiMenu, FiX } from 'react-icons/fi';
 
 const Hero = () => {
   const [activeSection, setActiveSection] = useState('');
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const topButtons = [
-    { label: 'About', href: '#about' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Sobre', href: '#about' },
+    { label: 'Projetos', href: '#projects' },
+    { label: 'Contacto', href: '#contact' },
   ];
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,7 +24,9 @@ const Hero = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      {
+        threshold: 0.6,
+      }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -35,10 +36,10 @@ const Hero = () => {
   return (
     <section className="h-screen bg-[#101D25] relative overflow-hidden pt-[80px]" id="home">
       {/* Navbar */}
-      <div className="w-full fixed top-0 left-0 z-50 px-4 sm:px-6 md:px-[90px] py-[18px] flex justify-between items-center backdrop-blur-md bg-[#101D25]/70">
+      <div className="w-full fixed top-0 left-0 z-50 px-[90px] py-[18px] flex justify-between items-center backdrop-blur-md bg-[#101D25]/70 ">
         {/* Logo */}
         <div
-          className="text-2xl font-semibold tracking-widest ml-0 md:ml-[260px]"
+          className="text-2xl font-semibold tracking-widest ml-[260px]"
           style={{
             fontFamily: "'Montserrat', sans-serif",
             color: '#F2D0CA',
@@ -47,92 +48,60 @@ const Hero = () => {
           MP
         </div>
 
-        {/* Desktop nav */}
-        <div className="hidden sm:flex gap-5 text-sm mr-0 md:mr-[65px]">
+        {/* Navigation Buttons */}
+        <div className="flex gap-5 text-sm mr-[65px]">
           {topButtons.map(({ label, href }) => {
             const sectionId = href.replace('#', '');
-            const isContact = label === 'Contact';
+            const isContact = label === 'Contacto';
             const isActive = activeSection === sectionId;
 
             return (
               <a key={label} href={href} aria-label={`Ir para a secção ${label}`}>
                 <motion.button
-                  whileHover={{
-                    scale: 1.07,
-                    backgroundColor: isContact ? '#f2c3bf' : 'rgba(242, 208, 202, 0.1)',
-                    color: isContact ? '#000000' : '#F2D0CA',
-                    boxShadow: isContact
-                      ? '0 2px 12px rgba(242, 208, 202, 0.25)'
-                      : '0 1px 6px rgba(242, 208, 202, 0.1)',
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className={`px-5 py-1.5 rounded-full border transition-all duration-300 ${
-                    isActive ? 'border-white text-white' : ''
-                  } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2D0CA] ${
-                    isContact ? 'font-semibold' : 'font-normal'
-                  }`}
-                  style={{
-                    fontFamily: "'Montserrat', sans-serif",
-                    background: isContact
-                      ? 'linear-gradient(90deg, #F2D0CA, #F2C3BF)'
-                      : 'transparent',
-                    color: isContact ? '#000000' : '#F2D0CA',
-                    borderColor: isContact ? 'transparent' : '#F2D0CA',
-                  }}
-                >
-                  {label}
-                </motion.button>
+  whileHover={{
+    scale: 1.07,
+    backgroundColor: isContact ? '#f2c3bf' : 'rgba(242, 208, 202, 0.1)',
+    color: isContact ? '#000000' : '#F2D0CA',
+    boxShadow: isContact
+      ? '0 4px 12px rgba(242, 208, 202, 0.3)'
+      : '0 2px 8px rgba(242, 208, 202, 0.15)',
+  }}
+  whileFocus={{
+    outline: 'none',
+    boxShadow: '0 0 0 2px rgba(242, 208, 202, 0.4)',
+  }}
+  transition={{ type: 'spring', stiffness: 240, damping: 20 }}
+  className={`px-5 py-1.5 rounded-full border border-[#F2D0CA] transition-all duration-300 backdrop-blur-sm ${
+    isActive ? 'border-white text-white' : ''
+  } ${isContact ? 'font-semibold' : 'font-normal'}`}
+  style={{
+    fontFamily: "'Montserrat', sans-serif",
+    background: isContact
+      ? 'linear-gradient(90deg, #F2D0CA, #F2C3BF)'
+      : 'transparent',
+    color: isContact ? '#000000' : '#F2D0CA',
+  }}
+>
+  {label}
+</motion.button>
+
               </a>
             );
           })}
         </div>
-
-        {/* Mobile menu toggle */}
-        <div className="sm:hidden">
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="text-[#F2D0CA] text-2xl focus:outline-none"
-            aria-label="Abrir/fechar menu"
-          >
-            {menuOpen ? <FiX /> : <FiMenu />}
-          </button>
-        </div>
       </div>
 
-      {/* Mobile menu dropdown */}
-      {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="absolute top-[80px] left-0 w-full bg-[#101D25] flex flex-col items-center gap-4 py-4 sm:hidden z-40"
-        >
-          {topButtons.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              onClick={() => setMenuOpen(false)}
-              className="text-[#F2D0CA] text-base font-medium"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              {label}
-            </a>
-          ))}
-        </motion.div>
-      )}
-
       {/* Main content */}
-      <div className="flex flex-col md:flex-row h-full items-center justify-center md:justify-between px-4 sm:px-6 md:px-32 pt-12 md:pt-20 pb-10 gap-6">
+      <div className="flex flex-col md:flex-row h-full items-center justify-between px-6 md:px-32 pt-12 pb-10 gap-1">
         {/* Left content */}
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="w-full max-w-[540px] text-center md:text-left md:ml-[260px]"
+          className="max-w-[1920px] md:ml-55 mb-22"
         >
           <h1
-            className="text-[26px] sm:text-[38px] md:text-[75px] font-light leading-tight"
+            className="text-[38px] md:text-[75px] font-light leading-[1.05]"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               color: '#878483',
@@ -158,12 +127,8 @@ const Hero = () => {
             </span>
           </h1>
 
-          {/* Subtítulo animado */}
-          <motion.p
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="text-sm sm:text-base mt-3"
+          <p
+            className="text-base mt-2.5 ml-1"
             style={{
               fontFamily: "'Montserrat', sans-serif",
               color: '#878483',
@@ -172,44 +137,49 @@ const Hero = () => {
               display: 'flex',
               gap: '22px',
               flexWrap: 'wrap',
-              justifyContent: 'center',
               letterSpacing: '2.89px',
             }}
           >
-            <span>Designer UI/UX</span>
-            <span>&</span>
+            <span style={{ color: '#878483' }}>Designer UI/UX</span>
+            <span style={{ margin: '0 4px' }}>&</span>
             <span style={{ color: '#F2D0CA', fontWeight: '200' }}>Criador Visual</span>
-          </motion.p>
+          </p>
 
-          {/* Botão animado */}
           <motion.a
-            href="#projects"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            whileHover={{
-              scale: 1.05,
-              backgroundColor: '#f2d0ca10',
-              boxShadow: '0 4px 14px rgba(242, 208, 202, 0.25)',
-            }}
-            className="inline-block mt-10 px-6 py-2 rounded-full border border-[#F2D0CA] backdrop-blur-sm"
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              color: '#F2D0CA',
-              fontWeight: 500,
-              letterSpacing: '2px',
-            }}
-          >
-            Projects
-          </motion.a>
+  href="#projects"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.97 }}
+  className="relative inline-block mt-15 ml-15 px-8 py-2.5 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500"
+  style={{
+    fontFamily: "'Montserrat', sans-serif",
+    fontWeight: 600,
+    letterSpacing: '1.5px',
+    background: 'linear-gradient(to right, rgba(242, 208, 202, 0) 0%, rgba(242, 208, 202, 1) 50%, rgba(242, 208, 202, 0) 100%)',
+    color: '#101D25',
+    opacity: 0.6,
+  }}
+>
+  <span className="relative z-10 transition-colors duration-300 group-hover:text-[#101D25]">
+    Projetos
+  </span>
+  <span
+    className="absolute inset-0 z-0 bg-gradient-to-r from-[#f2d0ca00] via-[#f2c3bf] to-[#f2d0ca00] bg-[length:200%] bg-left opacity-0 group-hover:opacity-100 group-hover:bg-right transition-all duration-700 rounded-full"
+    aria-hidden="true"
+  />
+</motion.a>
+
+
+
+
+
+
+
+
         </motion.div>
 
-        {/* Right image (desktop only) */}
+        {/* Right image */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1 }}
+          
           className="hidden md:block relative w-[691px] h-[889px] translate-x-[40px] translate-y-[-30px]"
         >
           <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#101D25] to-transparent z-30" />

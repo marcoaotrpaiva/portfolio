@@ -54,4 +54,20 @@ body {
 .animate-fadeIn {
   animation: fadeIn 1.5s ease-out forwards;
 }
+@keyframes gradient-y {
+  0%,100% { background-position: 50% 0%; }
+  50%     { background-position: 50% 100%; }
+}
+.animate-gradient-y {
+  background-size: 100% 300%;
+  animation: gradient-y 6s ease-in-out infinite;
+}
 
+/* — global CSS (e.g. globals.css) — */
+/*  globals.css  */
+.mark{
+  color:#F2D0CA;
+  font-weight:600;
+  text-decoration:underline .08em;
+  text-underline-offset:2px;
+}
