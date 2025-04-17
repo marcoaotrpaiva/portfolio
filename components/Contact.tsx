@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Toaster, toast } from 'react-hot-toast';
-import { FaPaperPlane, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaPaperPlane, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Contact = () => {
