@@ -23,7 +23,15 @@ import { ReactNode } from 'react';
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt" className={montserrat.variable}>
+      <head>
+      <title>Marco Paiva · Portfolio</title>
+      <meta
+           name="description"
+           content="Portfólio de Marco Paiva – Designer UI/UX e Full‑Stack Developer."
+         />
+      </head>
       <body>{children}</body>
     </html>
-  )
+  );
+  
 }
