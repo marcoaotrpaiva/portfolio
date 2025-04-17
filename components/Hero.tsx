@@ -11,13 +11,13 @@ const Hero = () => {
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
     const observer = new IntersectionObserver(
-      entries => entries.forEach(entry => {
+      (entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) setActiveSection(entry.target.id);
       }),
       { threshold: 0.6 }
     );
-    sections.forEach(sec => observer.observe(sec));
-    return () => sections.forEach(sec => observer.unobserve(sec));
+    sections.forEach((sec) => observer.observe(sec));
+    return () => sections.forEach((sec) => observer.unobserve(sec));
   }, []);
 
   const topButtons = [
@@ -27,7 +27,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="h-screen bg-[#101D25] relative overflow-hidden pt-20">
+    <section id="home" className="h-auto md:h-screen bg-[#101D25] relative overflow-hidden pt-20">
       {/* Navbar */}
       <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-[#101D25]/70">
         <div className="container mx-auto flex items-center justify-between px-6 sm:px-8 lg:px-20 py-4">
@@ -74,7 +74,12 @@ const Hero = () => {
           <nav className="md:hidden bg-[#101D25]/80 backdrop-blur-md">
             <div className="flex flex-col items-center space-y-4 py-4">
               {topButtons.map(({ label, href }) => (
-                <a key={label} href={href} onClick={() => setMenuOpen(false)} className="text-lg font-medium text-[#F2D0CA] hover:text-white">
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-lg font-medium text-[#F2D0CA] hover:text-white"
+                >
                   {label}
                 </a>
               ))}
@@ -84,15 +89,15 @@ const Hero = () => {
       </header>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-20 pt-12 pb-10">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-20 pt-8 pb-8">
         {/* Mobile image above text */}
         <motion.div
-className="relative block md:hidden w-32 h-32 rounded-full overflow-hidden mx-auto mb-6"
-initial={{ opacity: 0 }}
+          className="block md:hidden w-50 h-50 relative mx-auto mb-6 rounded-full overflow-hidden"
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Image src="/images/profile-picture.png" alt="Retrato" fill className="object-cover rounded-[24px] drop-shadow-4xl" />
+          <Image src="/images/profile-picture.png" alt="Retrato" fill className="object-cover" />
         </motion.div>
 
         <div className="flex flex-col md:flex-row h-full items-center justify-between gap-6">
@@ -103,23 +108,36 @@ initial={{ opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-[32px] sm:text-[38px] md:text-[75px] font-thin leading-[1.05] mb-4" style={{ fontFamily: 'var(--font-montserrat)', color: '#878483' }}>
+            <h1
+              className="text-[40px] sm:text-[50px] md:text-[75px] font-thin leading-[1.05] mb-4"
+              style={{ fontFamily: 'var(--font-montserrat)', color: '#878483' }}
+            >
               <span className="block font-thin">
-                Olá! <span className="inline-block animate-wiggle" style={{ transformOrigin: '70% 70%' }}>👋</span>
+                Olá!{' '}
+                <span className="inline-block animate-wiggle" style={{ transformOrigin: '70% 70%' }}>
+                  👋
+                </span>
               </span>
               <span className="block mt-2 font-thin">
                 Sou o <span className="font-bold text-[#F2D0CA]">Marco Paiva</span>
               </span>
             </h1>
-            <p className="text-sm sm:text-base flex flex-wrap gap-3 mb-6 justify-center md:justify-start" style={{ fontFamily: "'Montserrat', sans-serif", color: '#878483', opacity: 0.5, letterSpacing: '2.5px' }}>
+            <p
+              className="text-sm sm:text-base flex flex-wrap gap-3 mb-6 justify-center md:justify-start"
+              style={{ fontFamily: "'Montserrat', sans-serif", color: '#878483', opacity: 0.5, letterSpacing: '2.5px' }}
+            >
               <span>Designer UI/UX</span><span>&</span><span className="font-extralight text-[#F2D0CA]">Criador Visual</span>
             </p>
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-block px-6 py-2 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wide opacity-80"
-              style={{ fontFamily: "'Montserrat', sans-serif", background: 'linear-gradient(to right, rgba(242,208,202,0) 0%, rgba(242,208,202,1) 50%, rgba(242,208,202,0) 100%)', color: '#101D25' }}
+              className="inline-block px-8 py-3 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wide opacity-80"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                background: 'linear-gradient(to right, rgba(242,208,202,0) 0%, rgba(242,208,202,1) 50%, rgba(242,208,202,0) 100%)',
+                color: '#101D25',
+              }}
             >
               <span className="relative z-10 group-hover:text-[#101D25]">Projetos</span>
             </motion.a>
