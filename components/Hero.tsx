@@ -89,7 +89,7 @@ const Hero = () => {
       </header>
 
       {/* Main content */}
-      <div className="container mx-auto px-6 sm:px-8 lg:px-20 pt-8 pb-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-20 flex flex-col min-h-screen justify-center py-8">
         {/* Mobile image above text */}
         <motion.div
           className="block md:hidden w-40 h-40 relative mx-auto mb-6 rounded-full overflow-hidden"
