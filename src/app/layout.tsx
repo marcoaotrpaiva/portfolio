@@ -1,5 +1,5 @@
 // src/app/layout.tsxa
-import { Geist, Geist_Mono, Montserrat } from 'next/font/google';
+
 import './globals.css';
 import type { Metadata } from 'next';
 
