@@ -101,21 +101,15 @@ const Hero = () => {
           className="max-w-[1920px] md:ml-55 mb-22"
         >
           <h1
-            className="text-[38px] md:text-[75px] font-light leading-[1.05]"
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              color: '#878483',
-            }}
-          >
-            Olá!{' '}
-            <span
-              className="inline-block animate-wiggle"
-              style={{ transformOrigin: '70% 70%' }}
-            >
-              👋
-            </span>
+  className="text-[38px] md:text-[75px] font-extralight leading-[1.05] tracking-wide"
+  style={{ fontFamily: 'var(--font-montserrat)', color: '#878483' }}
+>
+  <span className="font-light text-[72px]" style={{lineHeight: '0'}}>Olá!</span>{' '}
+  <span className="inline-block animate-wiggle" style={{ transformOrigin: '70% 70%' }}>
+    👋
+  </span>
             <br />
-            Sou o{' '}
+            <span className="font-light text-[72px]"> Sou o </span>
             <span
               className="font-bold whitespace-nowrap"
               style={{
