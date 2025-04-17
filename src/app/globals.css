@@ -71,3 +71,9 @@ body {
   text-decoration:underline .08em;
   text-underline-offset:2px;
 }
+
+export const metadata = {
+  title: 'Marco Paiva · Portfolio',
+  description:
+    'Portfólio de Marco Paiva – Designer UI/UX e Full‑Stack Developer.',
+};
