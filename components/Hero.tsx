@@ -27,8 +27,8 @@ const Hero = () => {
   ];
 
   return (
-<section id="home" className="h-screen bg-[#101D25] relative overflow-hidden pt-32 pb-4">
-{/* Navbar */}
+    <section id="home" className="h-screen bg-[#101D25] relative overflow-hidden pt-32 pb-4">
+      {/* Navbar */}
       <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-[#101D25]/70">
         <div className="container mx-auto flex items-center justify-between px-6 sm:px-8 lg:px-20 py-4">
           <div className="text-2xl font-semibold tracking-widest" style={{ fontFamily: "'Montserrat', sans-serif", color: '#F2D0CA' }}>
@@ -45,11 +45,7 @@ const Hero = () => {
                     whileHover={{ scale: 1.07 }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: 'spring', stiffness: 240, damping: 20 }}
-                    className={`px-4 py-1 rounded-full border backdrop-blur-sm transition ${
-                      isActive ? 'border-white text-white' : 'text-[#F2D0CA] border-[#F2D0CA]'
-                    } ${
-                      isContact ? 'font-semibold bg-gradient-to-r from-[#F2D0CA] to-[#F2C3BF] text-black' : 'font-normal'
-                    }`}
+                    className={`px-4 py-1 rounded-full border backdrop-blur-sm transition ${isActive ? 'border-white text-white' : 'text-[#F2D0CA] border-[#F2D0CA]'} ${isContact ? 'font-semibold bg-gradient-to-r from-[#F2D0CA] to-[#F2C3BF] text-black' : 'font-normal'}`}
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {label}
@@ -85,58 +81,55 @@ const Hero = () => {
 
       {/* Main content */}
       <div className="container mx-auto px-6 sm:px-8 lg:px-20 pt-12 pb-10">
-        
-{/* Mobile image above text */}
-<motion.div
-className="block md:hidden w-[200px] h-[200px] mx-auto relative mb-6"  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.8, delay: 0.2 }}
->
-  <Image
-    src="/images/profile-picture.png"
-    alt="Retrato"
-    fill
-    className="object-cover rounded-full drop-shadow-4xl"
-  />
-</motion.div>
-
-
+        {/* Mobile image above text */}
+        <motion.div
+          className="block md:hidden w-[300px] h-[300px] mx-auto relative mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <Image
+            src="/images/profile-picture.png"
+            alt="Retrato"
+            fill
+            className="object-cover rounded-full drop-shadow-4xl"
+          />
+        </motion.div>
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        {/* Text Section */}
-        <motion.div
-  className="w-full md:w-[60%] text-center md:text-left md:ml-[0px] md:mt-[-160px]"
-  initial={{ x: 100, opacity: 0 }}
-  animate={{ x: 0, opacity: 1 }}
-  transition={{ duration: 0.8 }}
->
-<h1
-  className="text-3xl sm:text-4xl md:text-6xl lg:text-[75px] font-thin leading-tight text-[#878483]"
-  style={{ fontFamily: "'Montserrat', sans-serif" }}
->
-  <span className="hidden md:inline">Olá! 👋<br />Sou o </span>
-  <span className="font-bold text-[#F2D0CA] whitespace-nowrap tracking-widest md:tracking-normal">
-  Marco Paiva
-</span>
-</h1>
+          {/* Text Section */}
+          <motion.div
+            className="w-full md:w-[60%] text-center md:text-left md:ml-[0px] md:mt-[-160px] flex flex-col items-center md:items-start"
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1
+              className="text-4xl sm:text-4xl md:text-6xl lg:text-[85px] font-thin leading-tight text-[#878483] mt-12 md:mt-0"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              <span className="font-bold text-[#F2D0CA] whitespace-nowrap md:tracking-[5px] tracking-[2px]">
+                Marco Paiva
+              </span>
+            </h1>
 
-<p
-  className="text-sm sm:text-base flex flex-wrap gap-3 mb-6 justify-center md:justify-start"
-  style={{ fontFamily: "'Montserrat', sans-serif", color: '#878483', opacity: 0.5, letterSpacing: '4.9px' }}
->
-  <span className="hidden md:inline">Designer UI/UX</span>
-  <span className="hidden md:inline">&</span>
-  <span className="font-extralight text-[#F2D0CA]">Criador Visual</span>
-</p>
+            <p
+              className="text-sm sm:text-base flex flex-wrap gap-3 mb-6 ml-1 justify-center md:justify-start"
+              style={{ fontFamily: "'Montserrat', sans-serif", color: '#878483', opacity: 0.5, letterSpacing: '5.9px', fontSize: '17px' }}
+            >
+              <span className="hidden md:inline">Designer UI/UX</span>
+              <span className="hidden md:inline">&</span>
+              <span className="font-extralight text-[#F2D0CA]">Criador Visual</span>
+            </p>
 
             <motion.a
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-block px-6 py-2 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wide opacity-80"
+              className="inline-block  px-9 py-2.5 rounded-full border border-[#F2D0CA] overflow-hidden group transition-all duration-500 font-semibold tracking-wide opacity-80 mt-6 md:mt-12"
               style={{ fontFamily: "'Montserrat', sans-serif", background: 'linear-gradient(to right, rgba(242,208,202,0) 0%, rgba(242,208,202,1) 50%, rgba(242,208,202,0) 100%)', color: '#101D25' }}
             >
-              <span className="relative z-10 group-hover:text-[#101D25]">Projetos</span>
+              <span className="relative z-10 group-hover:text-[#101D25] ">Projetos</span>
             </motion.a>
           </motion.div>
 
@@ -156,4 +149,6 @@ className="block md:hidden w-[200px] h-[200px] mx-auto relative mb-6"  initial={
       </div>
     </section>
   );
-}
+};
+
+export default Hero;
